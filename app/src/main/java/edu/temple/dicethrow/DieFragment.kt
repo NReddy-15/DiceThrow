@@ -17,6 +17,7 @@ class DieFragment : Fragment() {
     lateinit var dieViewModel: DieViewModel
 
     var dieSides: Int = 6
+
     private val CURRENT_ROLL_KEY = "current roll"
     //private var current_roll = 0
 
@@ -28,7 +29,7 @@ class DieFragment : Fragment() {
             }
         }
 
-        dieViewModel = ViewModelProvider(this)[DieViewModel::class.java]
+        dieViewModel = ViewModelProvider(requireActivity())[DieViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -49,13 +50,13 @@ class DieFragment : Fragment() {
         }
 
         if (dieViewModel.getCurrentRoll().value == null) {
-            throwDie()
+            dieViewModel.rollDie()
         }
 
     }
 
-    fun throwDie() {
+    /*fun throwDie() {
         dieViewModel.setCurrentRoll(Random.nextInt(dieSides)+1)
-    }
+    }*/
 
 }
